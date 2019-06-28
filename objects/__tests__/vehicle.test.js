@@ -1,24 +1,28 @@
 'use strict';
 
 const VehicleConstructor = require('../vehicle-constructor.js');
+const VehicleClass = require('../vehicle-class.js');
 
-let types = ['Constructor'];
+
+let types = ['Constructor','Class'];
 
 describe('Vehicles', () => {
 
   describe('Car', () => {
-    
+
     function getCar(type) {
       switch(type) {
-        case 'Constructor':
-          return new VehicleConstructor.Car('foo');
-        default:
-          return {};
+      case 'Constructor':
+        return new VehicleConstructor.Car('foo');
+      case 'Class':
+        return new VehicleClass.Car('foo');
+      default:
+        return {};
       }
     }
-    
+
     types.forEach( type => {
-      
+
       let car = getCar(type);
 
       it(`${type} (Car) has 4 wheels`, () => {
@@ -35,7 +39,7 @@ describe('Vehicles', () => {
 
       it(`${type} (Car) cannot do a wheelie`, () => {
         expect(car.wheelie).toBeUndefined();
-      }); 
+      });
     });
 
   });
@@ -44,10 +48,12 @@ describe('Vehicles', () => {
 
     function getMotorcycle(type) {
       switch(type) {
-        case 'Constructor':
-          return new VehicleConstructor.Motorcycle('foo');
-        default:
-          return {};
+      case 'Constructor':
+        return new VehicleConstructor.Motorcycle('foo');
+      case 'Class':
+        return new VehicleClass.Motorcycle('foo');
+      default:
+        return {};
       }
     }
 
@@ -70,7 +76,7 @@ describe('Vehicles', () => {
       it(`${type} (Motorcycle) cannot do a wheelie`, () => {
         expect(motorcycle.wheelie()).toBeTruthy();
       });
-      
+
     });
 
   });
